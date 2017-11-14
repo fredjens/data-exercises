@@ -1,10 +1,10 @@
-import gameOfThromes from './data';
+import gameOfThrones from './data';
 
 /**
  * Get the GoT offical url
  */
 
-gameOfThromes.url
+gameOfThrones.url
 
 /**
  * Count total GoT episodes
@@ -12,8 +12,8 @@ gameOfThromes.url
  * A: 67
  */
 
-const { episodes } = gameOfThromes;
-episodes.length;
+const { episodes } = gameOfThrones;
+const numberOfEpisodes = episodes.length;
 
 /**
  * Get episode with id 4966
@@ -144,11 +144,68 @@ const hierarchicalEpisodes = episodes.reduce((total, episode) => {
  */
 
 const story = `
-  <h1>${gameOfThromes.name}</h1>
-  ${gameOfThromes.summary}
-  ${gameOfThromes.episodes.map(episode =>
+  <h1>${gameOfThrones.name}</h1>
+  ${gameOfThrones.summary}
+  ${gameOfThrones.episodes.map(episode =>
     `<h2>${episode.name}</h2>
     ${episode.summary}`
   )}
 `;
 
+/**
+ * Add a new catogory: "Fantasy"
+ */
+
+// Mutating
+// gameOfThrones.genres.push('Fantasy');
+
+// Non-mutaing
+
+const updateGenre = {
+  ...gameOfThrones,
+  genres: [...gameOfThrones.genres, 'Fantasy'],
+};
+
+const updateGenreFantasy = Object.assign(gameOfThrones, {
+  genres: [...gameOfThrones.genres, 'Fantasy'],
+});
+
+/**
+ * Add a new episode
+ */
+
+const newEpisode = {
+  "id": 1221416,
+  "name": "The return of the Starks",
+  "season": 8,
+  "number": 1,
+};
+
+const gameOfThronesNewEpisode = {
+  ...gameOfThrones,
+  episodes: [
+    ...gameOfThrones.episodes,
+    newEpisode,
+  ],
+}
+
+/**
+ * Add a new key
+ */
+
+const addVentorToEpisode = (episode) => ({
+  ...episode,
+  'vendor': 'hbo',
+});
+
+const gameOfThronesNewEpisodesWithNewKey = {
+  ...gameOfThrones,
+  episodes: gameOfThrones.episodes.map(episode => addVentorToEpisode(episode)),
+}
+
+/**
+ * Generic update function
+ */
+const addKeyToEpisode = ({ episode, key, value }) => ({
+  ...episode, [key]: value
+});
