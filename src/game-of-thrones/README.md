@@ -3,7 +3,7 @@
 ### Query data
 * Get the official URL
 * Count total of episodes
-* Get episode with specific ID
+* Get episode with specific ID: 1221410
 * Get name of a specific episode
 * List all episode from a season
 * List all titles alphabetically
